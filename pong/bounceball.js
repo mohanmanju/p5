@@ -7,7 +7,7 @@ var oneY = [0,0];
 var result = false;
 
 function setup(){
-    createCanvas(600,400);
+    createCanvas(700,400);
     background(0);
     x = 0;
     y = 0;
@@ -15,6 +15,11 @@ function setup(){
     index = 0;
     speedx = random(-5,5);
     speedy = random(-5,5);
+    createElement('br');
+    createElement('br');
+    button = createButton('Play Again');
+    //button.position(19, 19);
+    button.mousePressed(resetGame);
 }
 
 function draw(){
@@ -83,4 +88,16 @@ function update(){
     if(keyIsPressed == true && keyCode == DOWN_ARROW){
         oneY[index]+=2;
     }
+}
+
+function resetGame(){
+    x = 0;
+    y = 0;
+
+    index = 0;
+    speedx = random(-5,5);
+    speedy = random(-5,5);
+    result = false;
+    loop();
+
 }
