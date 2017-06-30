@@ -3,6 +3,7 @@ var y;
 var speedx;
 var speedy;
 
+var score = [0,0];
 var oneY = [0,0];
 var result = false;
 
@@ -13,13 +14,18 @@ function setup(){
     y = 0;
 
     index = 0;
-    speedx = random(-5,5);
-    speedy = random(-5,5);
+    speedx = random(-5,5)*1.5;
+    speedy = random(-2,2);
+
     createElement('br');
     createElement('br');
+
     button = createButton('Play Again');
-    //button.position(19, 19);
     button.mousePressed(resetGame);
+    //createDiv('Player 1').size(100,10);
+    scr1 = createDiv('Player 1:').size(100,50);
+    //createDiv('Player 2').size(100,10);
+    scr2 = createDiv('Player 2:').size(100,50);
 }
 
 function draw(){
@@ -34,7 +40,7 @@ function draw(){
 
     fill(125);
     noStroke();
-    //var first = rect(width/2-12,oneY,10,100);
+
 
     rect(width/2-12,oneY[0],10,100);
     rect(-width/2+2,oneY[1],10,100);
@@ -44,8 +50,11 @@ function draw(){
         move();
         update();
     }
+    else{
+        noLoop();
+        setScore();
+    }
 
-    //update();
 
 }
 
@@ -56,14 +65,17 @@ function move(){
 
 
     if(x > width/2-18 || x < -width/2+18){
-        //console.log(oneY[index]+"  "+y);
-        //speedx = speedx*-1;
+
         if(y > oneY[index]-15 && y < oneY[index]+115){
             speedx = speedx*-1;
         }else{
+            if(index){
+                score[1]++;
+            }else{
+                score[0]++;
+            }
             result = true;
-            noLoop();
-            //console.log("fail");
+
         }
 
     }
@@ -82,11 +94,15 @@ function update(){
     }
 
     if(keyIsPressed == true && keyCode == UP_ARROW){
-        oneY[index]-=2;
+        if(oneY[index] > -200 ){
+            oneY[index]-=2;
+        }
     }
 
     if(keyIsPressed == true && keyCode == DOWN_ARROW){
-        oneY[index]+=2;
+        if(oneY[index] < 100){
+            oneY[index]+=2;
+        }
     }
 }
 
@@ -94,10 +110,14 @@ function resetGame(){
     x = 0;
     y = 0;
 
-    index = 0;
     speedx = random(-5,5);
     speedy = random(-5,5);
     result = false;
     loop();
 
+}
+
+function setScore(){
+    scr1.html("Player 1:    "+score[0]);
+    scr2.html("Player 2:    "+score[1]);
 }
