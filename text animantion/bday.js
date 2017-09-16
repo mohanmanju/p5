@@ -2,7 +2,7 @@ var font;
 var vechiles = []
 
 function preload(){
-    font = loadFont('./AvenirNextLTPro-Demi.otf');
+    //font = loadFont('./AvenirNextLTPro-Demi.otf');
 }
 
 function setup(){
@@ -12,6 +12,8 @@ function setup(){
     textSize(200);
     fill(255);
     //text("hello",100,100);
+    
+    textFont("Georgia");
 
     var pix = font.textToPoints('hello world !!',50,350);
     for (var i=0; i<pix.length;i++){
