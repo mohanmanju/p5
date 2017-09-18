@@ -14,13 +14,14 @@ function setup(){
 
 function draw(){
 
+    colorMode(RGB);
     if(random(1)<0.1){
         var temp = new Vechile(10,10);
         temp.vel = createVector(0,random(-7,-10));
         temp.pos = createVector(random(width),height);
         vec.push(temp);
     }
-    background(0,45);
+    background(0,0,0,25);
 
     for(var i = vec.length-1;i>=0;i--){
 
@@ -28,7 +29,7 @@ function draw(){
         vec[i].update();
         vec[i].show();
         if(vec[i].vel.y>=0){
-            many.push(new piece(vec[i].pos.x,vec[i].pos.y));
+            many.push(new piece(vec[i].pos.x,vec[i].pos.y,vec[i].color));
             vec.pop(vec[i]);
         }
 

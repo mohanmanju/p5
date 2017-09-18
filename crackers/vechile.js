@@ -5,6 +5,7 @@ function Vechile(x,y){
     this.vel = p5.Vector.random2D()
     this.acc = createVector();
     this.target = createVector(x,y);
+    this.color = random(255);
 }
 
 Vechile.prototype.behaviors = function(){
@@ -29,10 +30,11 @@ Vechile.prototype.update = function(){
 
 }
 
-Vechile.prototype.show = function(){
+Vechile.prototype.show = function(color){
+    colorMode(HSB);
     fill(255);
-    strokeWeight(8);
-    stroke(255);
+    strokeWeight(6);
+    stroke(this.color,255,255);
     point(this.pos.x,this.pos.y);
 }
 
