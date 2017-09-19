@@ -2,7 +2,7 @@ var font;
 var vechiles = []
 
 function preload(){
-    //font = loadFont('./AvenirNextLTPro-Demi.otf');
+    font = loadFont('http://www.princexml.com/fonts/larabie/kimberle.ttf');
 }
 
 function setup(){
