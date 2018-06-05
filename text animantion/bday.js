@@ -2,7 +2,7 @@ var font;
 var vechiles = []
 
 function preload(){
-    //font = loadFont('./AvenirNextLTPro-Demi.otf');
+    font = loadFont('https://raw.githubusercontent.com/mohanmanju/p5/master/text%20animantion/AvenirNextLTPro-Demi.otf');
 }
 
 function setup(){
