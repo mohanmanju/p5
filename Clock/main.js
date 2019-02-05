@@ -6,15 +6,10 @@ function setup(){
     background(0);
     angleMode(DEGREES);
     frameRate(1);
-    let hr = hour();
-    let min = minute();
-    let sec = second();
-    console.log(hr);
-    console.log(min);
-    console.log(sec);
 }
 
 function draw(){
+//refresh
     background(0);
     noFill();
     translate(250,200);
