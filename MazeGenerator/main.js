@@ -2,7 +2,8 @@ let w = 20;
 let c;
 let grids = [];
 let row,col;
-let current ;
+let current;
+let followUpNeighbour = []
 class cell{
     constructor(x,y){
         this.x = x ;
@@ -37,12 +38,14 @@ class cell{
         }
         return j +i *row;
     }
+    heightLight(){
+        fill(0,0,255,100);
+            noStroke();
+            rect(this.x*w,this.y*w,w,w);
+    }
     checkNeighbour(){
         var neighbour = [];
-        // print(this.index(this.x,this.y-1));
-        // print(this.index(this.x+1,this.y));
-        // print(this.index(this.x,this.y+1));
-        // print(this.index(this.x-1,this.y));
+
         var top = grids[this.index(this.x,this.y-1)];
         var right = grids[this.index(this.x+1,this.y)];
         var bottom = grids[this.index(this.x,this.y+1)];
@@ -60,13 +63,14 @@ class cell{
         if( left && left.visited == false){
             neighbour.push(left);
         }
-
+        //followUpNeighbour.push(grids[this.index(this.x,this.y)]);
         if(neighbour.length > 0 ){
             var rnd = floor(random(0,neighbour.length));
             neighbour[rnd].visited = true;
-                //print(i);
-            return  neighbour[rnd];
+            return neighbour[rnd];
+               
         }
+       
         //print(grids);
     }
    
@@ -86,7 +90,7 @@ function setup(){
     //fill(50);
     current = grids[0];
     current.visited = true;
-    frameRate(10);
+    //frameRate(10);
 }
 
 function checkDirection(current,next){
@@ -108,24 +112,7 @@ function checkDirection(current,next){
         current.sides[0] = false;
         next.sides[2] = false;
     }
-    // if(current.x == next.x){
-    //     if(current.y - next.y > 0){
-    //         current.sides[0] = false;
-    //         next.sides[2] = false;
-    //         return [[false,true,true,true,],[true,true,false,true]];
-    //     }
-    //     else{
-    //         return [[true,true,false,true],[false,true,true,true]];
-    //     }
-    // }
-    // else{
-    //     if(current.x - next.x > 0){
-    //         return [[true,true,true,false],[true,false,true,true]];
-    //     }
-    //     else{
-    //         return [[true,false,true,true],[true,true,true,false]];
-    //     }
-    // }
+   
 }
 
 function draw(){
@@ -135,17 +122,16 @@ function draw(){
     }
     
     var next = current.checkNeighbour();
+    current.heightLight();
+    
     if(next){
-        
-        var direction = checkDirection(current,next);
-        print(direction)
-        // current.sides = direction[0]
-        // next.sides = direction[1];
-        // current.show();
-        // next.show();
-        //next.show();
+        followUpNeighbour.push(current);
+        checkDirection(current,next);
+   
         current = next;
         
+    }else if(followUpNeighbour.length>0){
+        current = followUpNeighbour.pop();
     }
     
 }
