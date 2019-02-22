@@ -8,3 +8,4 @@ Crackers : [link](https://mohanmanju.github.io/p5/crackers/index.html)<br />
 Clock : [link](https://mohanmanju.github.io/p5/Clock/index.html)<br />
 10print : [link](https://mohanmanju.github.io/p5/10points/index.html)<br />
 Maze Generator : [link](https://mohanmanju.github.io/p5/MazeGenerator/index.html)<br />
+Binary to Decimal : [link](https://mohanmanju.github.io/p5/BinaryToDecimal/index.html)<br />
